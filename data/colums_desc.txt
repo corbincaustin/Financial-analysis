@@ -1,0 +1,1 @@
+symbol|security name|market category|test issue|financial status|round lot size|etf|nextshares
