@@ -38,7 +38,7 @@ with open("./data/all_stocks.txt", "r") as f:
 
 
         try:
-            x = intrinio.prices(sym, start_date='2016-01-01')
+            x = intrinio.prices(sym)
             x.to_csv('data/csvs/' + sym)
 
         except requests.exceptions.HTTPError as err:
