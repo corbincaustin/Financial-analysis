@@ -12,8 +12,6 @@ def print_full(x):
     pd.reset_option('display.max_rows')
 
 
-#intrinio.username='4a4579fe6084a63c04fb1c10ac596cee'
-#intrinio.password='f2b82eab19c337770642d04fd2224ed0'
 
 start_line = 0
 
