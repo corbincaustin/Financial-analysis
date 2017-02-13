@@ -47,7 +47,7 @@ with open("./data/all_stocks.txt", "r") as f:
                 with open('./data/start_line.txt', 'w') as outfile: outfile.write(str(i))
                 sys.exit()
             else:
-                print("error with " + sym + ", code: " + err.code)
+                with open('./errors','a') as outfile: outfile.write("error with " + sym + ", code: " + str(err.response.status_code))
 
         except AttributeError:
             print("error with " + sym)
