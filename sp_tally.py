@@ -8,8 +8,9 @@ import csv
 
 
 pctdel = [0.0] * 5 #the percent delta average for each day
-
+numstocks = 1
 for filename in os.listdir("data/stats/avg/"):
+    numstocks += 1
     with open('data/sp500') as f1:
         for line in f1:
             if filename in line:
@@ -21,6 +22,10 @@ for filename in os.listdir("data/stats/avg/"):
                             pctdel[x] += float(vals[x])/float(days[x])
                 f.close()
         f1.close()
+
+i = 0
+for i in range(0,5):
+    pctdel[i] = pctdel[i]/numstocks 
 
 print(pctdel)
 
