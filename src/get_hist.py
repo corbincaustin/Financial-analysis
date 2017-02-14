@@ -18,7 +18,7 @@ start_line = 0
 
 #gets the last line where the script stopped
 try:
-    with open('./data/start_line.txt', 'r') as sl: start_line = int(sl.read())
+    with open('../data/start_line.txt', 'r') as sl: start_line = int(sl.read())
 except:
     pass
 
@@ -27,7 +27,7 @@ print(start_line)
 
 # reads the file of all stocks, retrieves symbol, uses intrinio api to retrieve historical data from january 1, 2016 to present, and writes to csv
 
-with open("./data/all_stocks.txt", "r") as f:
+with open("../data/all_stocks.txt", "r") as f:
     for i, line in enumerate(f):
         if i < start_line: continue # passes through until last line parsed is reached
         print(line)
@@ -37,17 +37,17 @@ with open("./data/all_stocks.txt", "r") as f:
 
         try:
             x = intrinio.prices(sym)
-            x.to_csv('data/raw/' + sym)
+            x.to_csv('../data/raw/' + sym)
 
         except requests.exceptions.HTTPError as err:
 
             # if the api limit is reached, write ending line and exit
             if err.response.status_code == 429:
                 print("limit reached at line " + str(i) + "...exiting")
-                with open('./data/start_line.txt', 'w') as outfile: outfile.write(str(i))
+                with open('../data/start_line.txt', 'w') as outfile: outfile.write(str(i))
                 sys.exit()
             else:
-                with open('./errors','a') as outfile: outfile.write("error with " + sym + ", code: " + str(err.response.status_code))
+                with open('../errors','a') as outfile: outfile.write("error with " + sym + ", code: " + str(err.response.status_code))
 
         except AttributeError:
             print("error with " + sym)
